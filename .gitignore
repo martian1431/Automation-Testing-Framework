@@ -1,7 +1,3 @@
-.classpath
-.project
-.settings
-
-target/
-bin/
-test-output/
+automation-testing-bdd-framework.iml
+.idea
+target
