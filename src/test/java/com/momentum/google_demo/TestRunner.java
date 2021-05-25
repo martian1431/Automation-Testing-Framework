@@ -1,4 +1,4 @@
-package com.momentum.google;
+package com.momentum.google_demo;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -9,7 +9,7 @@ import io.cucumber.testng.CucumberOptions;
                 "json:target/cucumber-reports/cucumber.json"
         },
         features = {"src/test/resources/features/google"},
-        glue = {"com.momentum.google.step_definitions"},
+        glue = {"com.momentum.google_demo.step_definitions"},
         tags = "@regression"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {

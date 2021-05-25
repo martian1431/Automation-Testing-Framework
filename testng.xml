@@ -5,9 +5,9 @@
   	<classes>
 <!--		<class name="com.momentum.TestRunner">-->
 <!--		</class>-->
-		<class name="com.momentum.google.TestRunner">
+		<class name="com.momentum.google_demo.TestRunner">
 		</class>
-		<class name="com.momentum.dbankdemo.TestRunner">
+		<class name="com.momentum.dbank_demo.TestRunner">
 		</class>
 	</classes>
   </test> <!-- Test -->

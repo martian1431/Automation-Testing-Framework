@@ -1,7 +1,7 @@
-package com.momentum.dbankdemo.step_definitions;
+package com.momentum.dbank_demo.step_definitions;
 
-import com.momentum.dbankdemo.BaseClass;
-import com.momentum.dbankdemo.LoginPage;
+import com.momentum.dbank_demo.BaseClass;
+import com.momentum.dbank_demo.LoginPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;

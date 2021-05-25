@@ -1,4 +1,4 @@
-package com.momentum.dbankdemo;
+package com.momentum.dbank_demo;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

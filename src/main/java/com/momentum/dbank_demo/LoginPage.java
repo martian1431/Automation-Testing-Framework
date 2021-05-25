@@ -1,6 +1,5 @@
-package com.momentum.dbankdemo;
+package com.momentum.dbank_demo;
 
-import com.momentum.dbankdemo.BaseClass;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 

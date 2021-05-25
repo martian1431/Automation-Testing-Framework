@@ -1,4 +1,4 @@
-package com.momentum.google.step_definitions;
+package com.momentum.google_demo.step_definitions;
 
 import io.cucumber.java.en.Given;
 import org.junit.Assert;
