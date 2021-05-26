@@ -10,7 +10,7 @@ import io.cucumber.testng.CucumberOptions;
         },
         features = {"src/test/resources/features/guru99demo"},
         glue = {"com.momentum.guru99_demo.step_definitions"},
-        tags = "@TC_01"
+        tags = "@Regression"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 }

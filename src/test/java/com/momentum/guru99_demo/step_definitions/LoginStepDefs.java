@@ -1,50 +1,65 @@
 package com.momentum.guru99_demo.step_definitions;
 
+import com.momentum.guru99_demo.pages.HomePage;
+import com.momentum.guru99_demo.pages.LoginPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+
+import java.util.concurrent.TimeUnit;
 
 public class LoginStepDefs {
+    protected LoginPage loginPage;
+    protected HomePage homePage;
+    protected WebDriver driver;
+    protected String expectedWelcomeMessage = "Welcome To Manager's Page of Guru99 Bank";
+    protected final String baseUrl = "http://demo.guru99.com/V4/index.php";
 
     @Before
     public void setup() {
-        System.out.println("Setting up the environment...");
+        System.out.println("Loading browser...");
+        System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe");
+        driver = new ChromeDriver();
+        loginPage = new LoginPage(driver);
     }
 
     @Given("The login page is loaded")
     public void the_login_page_is_loaded() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        System.out.println("Loading website...");
+        driver.get(baseUrl);
+        System.out.println("Maximizing browser window...");
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     @When("User enters a userID {string}")
     public void user_enters_a_user_id(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        loginPage.setUserId(string);
     }
 
     @When("User enters a password {string}")
     public void user_enters_a_password(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        loginPage.setPassword(string);
     }
 
     @When("User clicks the login button")
     public void user_clicks_the_login_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        homePage = loginPage.loginValidUser();
     }
 
     @Then("User is redirected to {string}")
     public void user_is_redirected_to(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertEquals(homePage.getWelcomeMessage(), expectedWelcomeMessage);
     }
 
     @After
     public void tearDown() {
         System.out.println("Cleaning up the environment...");
+        driver.close();
     }
 }
