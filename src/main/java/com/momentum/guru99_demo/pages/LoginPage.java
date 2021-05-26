@@ -2,6 +2,9 @@ package com.momentum.guru99_demo.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 
 public class LoginPage {
@@ -10,13 +13,23 @@ public class LoginPage {
     private String userId;
     private String password;
 
-    private By userIdBy = By.name("uid");
-    private By passwordBy = By.name("password");
-    private By loginBy = By.name("btnLogin");
+    @FindBy(name = "uid")
+    WebElement userIdBy;
 
+    @FindBy(name = "password")
+    WebElement passwordBy;
+
+    @FindBy(name = "btnLogin")
+    WebElement loginBy;
+
+//    private final By userIdBy = By.name("uid");
+//    private final By passwordBy = By.name("password");
+//    private final By loginBy = By.name("btnLogin");
+//
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     /**
@@ -25,20 +38,18 @@ public class LoginPage {
      * @return HomePage object
      */
     public HomePage loginValidUser() {
-        driver.findElement(userIdBy).sendKeys(userId);
-        driver.findElement(passwordBy).sendKeys(password);
-        driver.findElement(loginBy).click();
+        userIdBy.sendKeys(userId);
+        passwordBy.sendKeys(password);
+        loginBy.click();
         return new HomePage(driver);
     }
 
     /**
      * Login as invalid user
      *
-     * @param userName
-     * @param password
      * @return Error Message string
      */
-    public String loginInvalidUser(String userName, String password) {
+    public String loginInvalidUser() {
         return "Default Error!!!";
     }
 

@@ -1,4 +1,4 @@
 package com.momentum.guru99_demo;
 
-public class TestPage {
+public class Test {
 }
