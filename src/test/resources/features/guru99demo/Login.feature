@@ -1,6 +1,6 @@
 Feature: Login feature
 
-  @Regression
+  @Guru99_Regression
   Scenario: Login with valid credentials
     Given The login page is loaded
     When User enters a userID "mngr329063"
