@@ -24,11 +24,9 @@ public class LoginStepDefs {
     @Before
     public void setup() {
         System.out.println("Loading browser...");
-        System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver");
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
+        System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe");
 
-        driver = new ChromeDriver(chromeOptions);
+        driver = new ChromeDriver();
         loginPage = new LoginPage(driver);
     }
 
