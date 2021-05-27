@@ -25,7 +25,7 @@ public class LoginStepDefs {
     @Before
     public void setup() {
         System.out.println("Loading browser...");
-        System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver");
+        System.setProperty("webdriver.chrome.driver","Driver/chromedriver.exe");
 
         driver = new ChromeDriver();
 //        driver = new FirefoxDriver();
