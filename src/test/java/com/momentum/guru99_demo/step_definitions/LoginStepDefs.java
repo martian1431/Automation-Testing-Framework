@@ -9,6 +9,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 
 import java.util.concurrent.TimeUnit;
@@ -24,7 +25,10 @@ public class LoginStepDefs {
     public void setup() {
         System.out.println("Loading browser...");
         System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+
+        driver = new ChromeDriver(chromeOptions);
         loginPage = new LoginPage(driver);
     }
 
