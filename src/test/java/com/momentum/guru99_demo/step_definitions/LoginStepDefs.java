@@ -25,7 +25,7 @@ public class LoginStepDefs {
     @Before
     public void setup() {
         System.out.println("Loading browser...");
-        System.setProperty("webdriver.gecko.driver","./src/test/resources/geckodriver");
+        System.setProperty("webdriver.gecko.driver","C:\\Users\\phmalope\\devProjects\\QAProjects\\Automation-Testing-BDD-Framework\\src\\test\\resources\\geckodriver");
 
 //        driver = new ChromeDriver();
         driver = new FirefoxDriver();
