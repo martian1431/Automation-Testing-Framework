@@ -10,6 +10,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 
 import java.util.concurrent.TimeUnit;
@@ -24,9 +25,10 @@ public class LoginStepDefs {
     @Before
     public void setup() {
         System.out.println("Loading browser...");
-        System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.gecko.driver","src/test/resources/geckodriver");
 
-        driver = new ChromeDriver();
+//        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         loginPage = new LoginPage(driver);
     }
 
