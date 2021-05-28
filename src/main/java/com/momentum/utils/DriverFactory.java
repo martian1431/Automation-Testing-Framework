@@ -7,12 +7,17 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.util.HashMap;
+
 /** Represents a Browser Driver.
  * @author Phetho Malope
  * @author phetomalope@gmail.com
  * @version 1.0
  */
 public class DriverFactory {
+
+    //config properties
+    private ConfigGetPropertyValues propertyValues = new ConfigGetPropertyValues();
 
     //Singleton design pattern
     public static final DriverFactory instance = new DriverFactory();
@@ -24,7 +29,7 @@ public class DriverFactory {
     }
 
     //Factory design pattern
-    private static final ThreadLocal<WebDriver> threadLocal = ThreadLocal.withInitial(ChromeDriver::new);
+    private static final ThreadLocal<WebDriver> threadLocal = new ThreadLocal<>();
 
     /*
      *  TODO:
@@ -33,10 +38,23 @@ public class DriverFactory {
      *          - ChromeOptions options = new ChromeOptions();
      *          - options.addArguments("--headless");
      * */
-    public WebDriver getDriver(BrowserType type, ChromeOptions options) {
+    public WebDriver getDriver(BrowserType type) {
         if (threadLocal.get() == null) {
             switch (type) {
                 case CHROME:
+                    // TODO: Refactor
+//                    try {
+//                        HashMap<String, String> props = propertyValues.getPropValues();
+//                        if (props.get("headless-mode").equals("true")) {
+//                            ChromeOptions options = new ChromeOptions();
+//                            options.addArguments("--headless");
+//                            threadLocal.set(new ChromeDriver(options));
+//                        } else {
+//                            threadLocal.set(new ChromeDriver());
+//                        }
+//                    } catch (Exception e) {
+//                        System.out.println(e);
+//                    }
                     threadLocal.set(new ChromeDriver());
                     break;
                 case FIREFOX:

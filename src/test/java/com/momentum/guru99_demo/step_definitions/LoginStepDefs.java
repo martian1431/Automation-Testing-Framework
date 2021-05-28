@@ -2,6 +2,8 @@ package com.momentum.guru99_demo.step_definitions;
 
 import com.momentum.guru99_demo.pages.HomePage;
 import com.momentum.guru99_demo.pages.LoginPage;
+import com.momentum.utils.BrowserType;
+import com.momentum.utils.DriverFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -15,6 +17,11 @@ import org.testng.Assert;
 
 import java.util.concurrent.TimeUnit;
 
+/** Represents a Login Steps.
+ * @author Phetho Malope
+ * @author phetomalope@gmail.com
+ * @version 1.0
+ */
 public class LoginStepDefs {
     protected LoginPage loginPage;
     protected HomePage homePage;
@@ -23,22 +30,27 @@ public class LoginStepDefs {
     protected final String baseUrl = "http://demo.guru99.com/V4/index.php";
 
     @Before
-    public void setup() {
-        System.out.println("Loading browser...");
-        System.setProperty("webdriver.chrome.driver","Driver/chromedriver.exe");
-
-        driver = new ChromeDriver();
-//        driver = new FirefoxDriver();
+    public void setUp() {
+        // set driver path
+        System.setProperty("webdriver.chrome.driver","Driver/chromedriver.exe"); // Chrome
+        // System.setProperty("webdriver.gecko.driver","Driver/geckodriver.exe"); // Firefox
+        // Driver options
+        ChromeOptions options = new ChromeOptions(); // driver options
+        options.addArguments("--headless");
+        // user Chrome driver
+        // driver = new ChromeDriver(options);
+        driver = DriverFactory.getInstance().getDriver(BrowserType.CHROME); // FIXME: options parameter seems to be not working when passing it to another method
+        // full screen window
+        driver.manage().window().maximize();
+        // wait for the element to appear before the exception occurs
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        //
         loginPage = new LoginPage(driver);
     }
 
     @Given("The login page is loaded")
     public void the_login_page_is_loaded() {
-        System.out.println("Loading website...");
         driver.get(baseUrl);
-        System.out.println("Maximizing browser window...");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     @When("User enters a userID {string}")
@@ -63,7 +75,6 @@ public class LoginStepDefs {
 
     @After
     public void tearDown() {
-        System.out.println("Cleaning up the environment...");
         driver.close();
     }
 }

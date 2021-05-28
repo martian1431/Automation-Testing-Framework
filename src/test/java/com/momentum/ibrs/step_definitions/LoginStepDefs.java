@@ -1,6 +1,10 @@
 package com.momentum.ibrs.step_definitions;
 
-import com.momentum.ibrs.pages.Dashboard;
+import com.momentum.ibrs.pages.DashboardPage;
+import com.momentum.ibrs.pages.LoginPage;
+import com.momentum.utils.BrowserType;
+import com.momentum.utils.ConfigGetPropertyValues;
+import com.momentum.utils.DriverFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -8,51 +12,53 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
+/** Represents a Login Steps.
+ * @author Phetho Malope
+ * @author phetomalope@gmail.com
+ * @version 1.0
+ */
 public class LoginStepDefs {
 
-    protected WebDriver driver;
-    protected Dashboard dashboard;
-    protected String baseUrl = "https://insidepre.momentummetropolitan.co.za/apps/ibrs";
+    private WebDriver driver;
+    private DashboardPage dashboardPage;
+    private LoginPage loginPage;
+    private String baseUrl = "https://insidepre.momentummetropolitan.co.za/apps/ibrs";
 
     @Before
     public void setup() {
-        System.setProperty("webdriver.chrome.driver","Driver/chromedriver.exe");
-        driver = new ChromeDriver();
-        dashboard = new Dashboard(driver);
+        // set driver path
+        System.setProperty("webdriver.chrome.driver","Driver/chromedriver.exe"); // Chrome
+//        driver = new ChromeDriver(options);
+        driver = DriverFactory.getInstance().getDriver(BrowserType.CHROME);
     }
 
-    @Given("User is on the login page")
-    public void user_is_on_the_login_page() {
-        // Write code here that turns the phrase above into concrete actions
-//        throw new io.cucumber.java.PendingException();
+    @Given("The browser is open and login page is loaded")
+    public void browser_is_open_and_login_page_is_loaded() {
+        // TODO: handle session
+        loginPage = new LoginPage(driver);
+        // loginPage.loadPage(); // FIXME: find a way to use this format
         driver.navigate().to(baseUrl);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        dashboard.IbrsAdminDropdown();
-        try {
-            Thread.sleep(5000);
-        } catch (Exception e) {
-            Thread.currentThread().interrupt();
-            System.out.println(e.getMessage());
-        }
     }
-    @When("User enters username {string} and password {string}")
-    public void user_enters_username_and_password(String string, String string2) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("I enter username {string} and password {string}")
+    public void I_enter_username_and_password(String username, String password) {
+
+        loginPage.enterCredentials(username, password);
     }
-    @When("User clicks on the login button")
-    public void user_clicks_on_the_login_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("I click on the login button")
+    public void I_click_on_the_login_button() {
+        dashboardPage = loginPage.clickSignInButton();
     }
-    @Then("User should be redirected to the {string}")
-    public void user_should_be_redirected_to_the(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @Then("I should be redirected to the Dashboard with a title {string}")
+    public void I_should_be_redirected_to_the_dashboard(String dashboardTitle) {
+        Assert.assertEquals(dashboardPage.getPageTitle(), dashboardTitle);
     }
 
     @After

@@ -10,15 +10,20 @@ import org.openqa.selenium.support.PageFactory;
  * @author phetomalope@gmail.com
  * @version 1.0
  */
-public class Dashboard {
+public class DashboardPage {
 
-    protected WebDriver driver;
+    private WebDriver driver;
+    private final String expectedPageTitle = "User Administration | Inside MMI";
 
     @FindBy(xpath = "//*[@id=\"nav-accordion\"]/div[7]/a")
     WebElement ibrsAdminBy;
 
-    public Dashboard(WebDriver driver) {
+    public DashboardPage(WebDriver driver) {
         this.driver = driver;
+        if (!this.driver.getTitle().equals(expectedPageTitle)) {
+            throw new IllegalStateException("Expected Page Title " + expectedPageTitle + "Actual Page Title " +
+                    this.driver.getTitle());
+        }
         PageFactory.initElements(driver, this);
         //Validate: check if user is logged in
     }
@@ -27,5 +32,8 @@ public class Dashboard {
         ibrsAdminBy.click();
     }
 
+    public String getPageTitle() {
+        return this.driver.getTitle();
+    }
 
 }
