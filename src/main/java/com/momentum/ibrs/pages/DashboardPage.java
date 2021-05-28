@@ -5,6 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+/** Represents a IBRS Dashboard page.
+ * @author Phetho Malope
+ * @author phetomalope@gmail.com
+ * @version 1.0
+ */
 public class Dashboard {
 
     protected WebDriver driver;
