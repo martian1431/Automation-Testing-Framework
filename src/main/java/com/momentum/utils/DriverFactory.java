@@ -24,12 +24,7 @@ public class DriverFactory {
     }
 
     //Factory design pattern
-    private static ThreadLocal<WebDriver> threadLocal = new ThreadLocal<WebDriver>() {
-        @Override
-        protected WebDriver initialValue() {
-            return new ChromeDriver();
-        }
-    };
+    private static final ThreadLocal<WebDriver> threadLocal = ThreadLocal.withInitial(ChromeDriver::new);
 
     /*
      *  TODO:
@@ -39,9 +34,6 @@ public class DriverFactory {
      *          - options.addArguments("--headless");
      * */
     public WebDriver getDriver(BrowserType type, ChromeOptions options) {
-        // set driver path
-        System.setProperty("webdriver.chrome.driver","Driver/chromedriver.exe"); // Chrome
-        // System.setProperty("webdriver.gecko.driver","Driver/geckodriver.exe"); // Firefox
         if (threadLocal.get() == null) {
             switch (type) {
                 case CHROME:
