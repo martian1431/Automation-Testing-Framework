@@ -53,5 +53,4 @@ public class LoginPage {
         // FIXME: Refactor hardcoded string!!!
         return pageTitle.equals("Sign in | Inside MMI");
     }
-
 }
