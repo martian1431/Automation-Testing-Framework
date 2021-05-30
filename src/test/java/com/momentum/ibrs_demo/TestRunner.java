@@ -1,4 +1,4 @@
-package com.momentum.ibrs;
+package com.momentum.ibrs_demo;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;

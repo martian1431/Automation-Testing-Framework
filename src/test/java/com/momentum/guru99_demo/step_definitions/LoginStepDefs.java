@@ -5,7 +5,9 @@ import com.momentum.guru99_demo.pages.LoginPage;
 import com.momentum.utils.BrowserType;
 import com.momentum.utils.DriverFactory;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
+import io.cucumber.java.BeforeStep;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -30,7 +32,7 @@ public class LoginStepDefs {
     protected final String baseUrl = "http://demo.guru99.com/V4/index.php";
 
     @Before
-    public void setUp() {
+    public void setUpClass() {
         // set driver path
         System.setProperty("webdriver.chrome.driver","Driver/chromedriver.exe"); // Chrome
         // System.setProperty("webdriver.gecko.driver","Driver/geckodriver.exe"); // Firefox
@@ -47,6 +49,17 @@ public class LoginStepDefs {
         //
         loginPage = new LoginPage(driver);
     }
+
+//    TODO: implement
+//    @BeforeStep
+//    public void setUpStep() {
+//
+//    }
+//
+//    @AfterStep
+//    public void tearDownStep() {
+//
+//    }
 
     @Given("The login page is loaded")
     public void the_login_page_is_loaded() {
@@ -74,7 +87,7 @@ public class LoginStepDefs {
     }
 
     @After
-    public void tearDown() {
+    public void tearDownClass() {
         driver.close();
     }
 }

@@ -1,21 +1,19 @@
-package com.momentum.ibrs.step_definitions;
+package com.momentum.ibrs_demo.step_definitions;
 
-import com.momentum.ibrs.pages.DashboardPage;
-import com.momentum.ibrs.pages.LoginPage;
+import com.momentum.ibrs_demo.pages.DashboardPage;
+import com.momentum.ibrs_demo.pages.LoginPage;
 import com.momentum.utils.BrowserType;
-import com.momentum.utils.ConfigGetPropertyValues;
 import com.momentum.utils.DriverFactory;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
+import io.cucumber.java.BeforeStep;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 /** Represents a Login Steps.
@@ -37,6 +35,17 @@ public class LoginStepDefs {
 //        driver = new ChromeDriver(options);
         driver = DriverFactory.getInstance().getDriver(BrowserType.CHROME);
     }
+
+//    TODO: Implement
+//    @BeforeStep
+//    public void setUpStep() {
+//
+//    }
+//
+//    @AfterStep
+//    public void tearDownStep() {
+//
+//    }
 
     @Given("The browser is open and login page is loaded")
     public void browser_is_open_and_login_page_is_loaded() {
