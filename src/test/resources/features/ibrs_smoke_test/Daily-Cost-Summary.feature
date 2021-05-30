@@ -18,7 +18,8 @@
       * Scenario description
     Add:
       *
-      *
    Notes:
+      *
+    Questions:
       *
   """

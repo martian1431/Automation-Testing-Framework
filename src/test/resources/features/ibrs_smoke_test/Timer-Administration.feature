@@ -26,9 +26,13 @@ Feature: Timer Administration
     Review:
       * Feature description
       * Scenario description
+      * Step definitions
     Add:
-      *
-      *
+      * Scenario outline
    Notes:
-      * Do I need a separate file to check timers that are enabled but status is cancelled
+      * Validate timers that are enabled and active
+    Questions:
+      * Do I need a separate file to check timers that are enabled but status is cancelled?
+      * Do I stop the test execution if one timer failed?
+      * Should I re-run the timer?
   """

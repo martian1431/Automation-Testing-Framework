@@ -39,4 +39,15 @@ Feature: Monthly Cost Summary
     When "the user clicks on the "Raning" column from the table"
     Then "the calculated rating from the "Satisfied clients leave rate" componet should match the one from the "IBRS statement""
 
-  Scenario: View Ranking
+
+  """
+    Review:
+      * Feature description
+      * Scenario description
+    Add:
+      * Scenario: View Ranking
+   Notes:
+      * Do I need a separate file to check timers that are enabled but status is cancelled
+    Questions:
+      *
+  """
