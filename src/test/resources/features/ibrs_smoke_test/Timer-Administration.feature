@@ -1,26 +1,24 @@
 # Author: pheto.malope@momentum.co.za
 Feature: Timer Administration
-  The execution status should display completed, given that
-  the timer is enabled and active.
 
-  Scenario: The user navigates to the Timer Administration page
-    Given the user administration page is displayed
-    When the user clicks on the "<instance name>" link on the nav bar
-    And the user clicks on the "IBRS Admin" dropdown list on the side bar
-    And the user clicks on the "Timer Administration" link on the dropdown list
-    Then a table with timer details should be displayed
+  Scenario:
+    Given the "dashboard" page is displayed
+    When the user clicks on the "<instance name>" link
+    And the user clicks on the "IBRS Admin" dropdown menu
+    And the user clicks on the "Timer Administration" link
+    Then timers are will be shown on the "Timer Administration" page
 
-  Scenario: The timer is active and enabled
-    Given a table with timer details is displayed
-    When the user clicks on "<Timer>" record
+  Scenario:
+    Given the timers are shown on the "Timer Administration" page
+    When the user clicks on "<Timer-name>" timer
     Then the status should show completed
     And the timer should be active
     And the timer should be enabled
 
-  Scenario: The timer logs
+  Scenario:
     Given the status is showing completed
     When the user clicks on "Timer Execution Logs" button
-    Then the execution status should be completed
+    Then the execution status should show completed
 
   """
     Review:

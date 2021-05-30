@@ -1,8 +1,7 @@
 # Author: pheto.malope@momentum.co.za
   Feature: Daily Cost Summary
-    Verify that the points are pulling through
 
-  Scenario: Filter summaries by current date
+  Scenario:
     Given the dashboard page is displayed
     When the user clicks on the "<instance name>" link on the nav bar
     And the user clicks on the "Management" dropdown list on the side bar

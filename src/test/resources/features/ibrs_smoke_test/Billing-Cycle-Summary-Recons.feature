@@ -1,6 +1,5 @@
 # Author: pheto.malope@momentum.co.za
 Feature: Daily Cost Summary
-  Check if movement data is balancing
 
   Scenario:
     Given the dashboard page is displayed
