@@ -1,4 +1,4 @@
-package com.momentum.ibrs_demo.pages;
+package com.momentum.ibrs_smoke_test.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

@@ -1,13 +1,11 @@
-package com.momentum.ibrs_demo.step_definitions;
+package com.momentum.ibrs_smoke_test.step_definitions;
 
-import com.momentum.ibrs_demo.pages.DashboardPage;
-import com.momentum.ibrs_demo.pages.LoginPage;
+import com.momentum.ibrs_smoke_test.pages.DashboardPage;
+import com.momentum.ibrs_smoke_test.pages.LoginPage;
 import com.momentum.utils.BrowserType;
 import com.momentum.utils.DriverFactory;
 import io.cucumber.java.After;
-import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
-import io.cucumber.java.BeforeStep;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
