@@ -5,7 +5,7 @@ Feature: Timer Administration
     Given the "dashboard" page is displayed
     When the user clicks on the "<instance name>" link
     And the user clicks on the "IBRS Admin" dropdown menu
-    And the user clicks on the "Timer Administration" link
+    And the user clicks on the "Timer Administration" link from the dropdown menu
     Then timers are will be shown on the "Timer Administration" page
 
   Scenario:
