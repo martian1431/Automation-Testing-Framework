@@ -3,12 +3,6 @@
 <suite name="Test Suite" verbose="1">
   <test name="Regression Tests">
   	<classes>
-<!--		<class name="com.fourteen31.TestRunner">-->
-<!--		</class>-->
-<!--		<class name="com.fourteen31.google_demo.TestRunner">-->
-<!--		</class>-->
-<!--		<class name="com.fourteen31.dbank_demo.TestRunner">-->
-<!--		</class>-->
 		<class name="com.fourteen31.guru99_demo.TestRunner">
 		</class>
 	</classes>

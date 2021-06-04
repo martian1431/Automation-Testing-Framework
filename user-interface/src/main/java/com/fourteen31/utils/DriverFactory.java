@@ -6,8 +6,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.net.URL;
 import java.util.HashMap;
 
 /** Represents a Browser Driver.
@@ -44,18 +46,6 @@ public class DriverFactory {
             switch (type) {
                 case CHROME:
                     // TODO: Refactor
-//                    try {
-//                        HashMap<String, String> props = propertyValues.getPropValues();
-//                        if (props.get("headless-mode").equals("true")) {
-//                            ChromeOptions options = new ChromeOptions();
-//                            options.addArguments("--headless");
-//                            threadLocal.set(new ChromeDriver(options));
-//                        } else {
-//                            threadLocal.set(new ChromeDriver());
-//                        }
-//                    } catch (Exception e) {
-//                        System.out.println(e);
-//                    }
                     threadLocal.set(new ChromeDriver());
                     break;
                 case FIREFOX:

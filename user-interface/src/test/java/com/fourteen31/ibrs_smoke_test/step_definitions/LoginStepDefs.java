@@ -30,20 +30,8 @@ public class LoginStepDefs {
     public void setup() {
         // set driver path
         System.setProperty("webdriver.chrome.driver","Driver/chromedriver.exe"); // Chrome
-//        driver = new ChromeDriver(options);
         driver = DriverFactory.getInstance().getDriver(BrowserType.CHROME);
     }
-
-//    TODO: Implement
-//    @BeforeStep
-//    public void setUpStep() {
-//
-//    }
-//
-//    @AfterStep
-//    public void tearDownStep() {
-//
-//    }
 
     @Given("The browser is open and login page is loaded")
     public void browser_is_open_and_login_page_is_loaded() {
@@ -72,4 +60,15 @@ public class LoginStepDefs {
     public void tearDown() {
         driver.close();
     }
+
+    //    TODO: Implement
+//    @BeforeStep
+//    public void setUpStep() {
+//
+//    }
+//
+//    @AfterStep
+//    public void tearDownStep() {
+//
+//    }
 }
