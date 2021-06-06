@@ -31,12 +31,13 @@ public class LoginStepDefs {
     public void setUpClass() {
         // Web Driver (local)
         //System.setProperty("webdriver.chrome.driver","Driver/chromedriver.exe"); // Chrome
-        driver = DriverFactory.getInstance().getDriver(BrowserType.CHROME);
+//        driver = DriverFactory.getInstance().getDriver(BrowserType.CHROME);
 
         // Remote Driver (docker container)
-//        driver = DriverFactory.getInstance().getDriver();
+        driver = DriverFactory.getInstance().getDriver();
 
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
     }
 
