@@ -8,10 +8,12 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 
 import static com.fourteen31.utils.DriverConstants.*;
+import static com.fourteen31.utils.EnvConstants.HUB_URL;
 
 /** Represents a Browser Driver.
  * @author Phetho Malope
@@ -21,8 +23,9 @@ import static com.fourteen31.utils.DriverConstants.*;
 public class DriverFactory {
     private static URL remoteDriverHostUrl;
     private static ChromeOptions chromeOptions;
-    private static Properties config;
-    private static final String DRIVER_CONFIG_FILE = "src/main/resources/driver.propertie";
+    private static Properties driverConfig;
+    private static final String DRIVER_CONFIG_FILE = "src/main/resources/driver.properties";
+    private static final String ENV_REGRESSION_CONFIG_FILE = "src/main/resources/env-regression.properties";
 
     //config properties
     private ConfigGetPropertyValues propertyValues = new ConfigGetPropertyValues();
@@ -45,23 +48,23 @@ public class DriverFactory {
     public RemoteWebDriver getDriver(BrowserType type) {
 
         try {
-            config = new Properties();
-            config.load(new FileInputStream(DRIVER_CONFIG_FILE));
+            Properties driverConfig = new Properties();
+            driverConfig.load(new FileInputStream(DRIVER_CONFIG_FILE));
 
             if (threadLocal.get() == null) {
                 if (isWindows()) {
                     // TODO: refactor - setupDriver()
                     switch (type) {
                         case CHROME:
-                            System.setProperty(CHROME_DRIVER_WINDOWS, config.getProperty(CHROME_DRIVER_PATH_WINDOWS));
+                            System.setProperty(CHROME_DRIVER_WINDOWS, driverConfig.getProperty(CHROME_DRIVER_PATH_WINDOWS));
                             threadLocal.set(new ChromeDriver());
                             break;
                         case FIREFOX:
-                            System.setProperty(GECKO_DRIVER_WINDOWS, config.getProperty(GECKO_DRIVER_PATH_WINDOWS));
+                            System.setProperty(GECKO_DRIVER_WINDOWS, driverConfig.getProperty(GECKO_DRIVER_PATH_WINDOWS));
                             threadLocal.set(new FirefoxDriver());
                             break;
                         case EDGE:
-                            System.setProperty(EDGE_DRIVER_WINDOWS, config.getProperty(EDGE_DRIVER_PATH_WINDOWS));
+                            System.setProperty(EDGE_DRIVER_WINDOWS, driverConfig.getProperty(EDGE_DRIVER_PATH_WINDOWS));
                             threadLocal.set(new EdgeDriver());
                             break;
                         default:
@@ -89,15 +92,26 @@ public class DriverFactory {
      *
      * */
     public RemoteWebDriver getDriver() {
-        chromeOptions = new ChromeOptions(); // driver options
-
         try {
-            remoteDriverHostUrl = new URL("http://192.168.8.112:4444/wd/hub");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        threadLocal.set(new RemoteWebDriver(remoteDriverHostUrl, chromeOptions));
+            // Chrome options
+            chromeOptions = new ChromeOptions(); // driver options
 
+            // Load config file
+            Properties envConfig = new Properties();
+            envConfig.load(new FileInputStream(ENV_REGRESSION_CONFIG_FILE));
+
+            remoteDriverHostUrl = new URL(envConfig.getProperty(HUB_URL));
+            // set options
+            threadLocal.set(new RemoteWebDriver(remoteDriverHostUrl, chromeOptions));
+        } catch (Exception ex) {
+            if (ex instanceof MalformedURLException) {
+                //FIXME: handle exception gracefully!!!
+                System.out.println(ex.getMessage());
+            } else {
+                //FIXME: handle unknown exception gracefully!!!
+                ex.printStackTrace();
+            }
+        }
         return threadLocal.get();
     }
 
