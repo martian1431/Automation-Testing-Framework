@@ -13,7 +13,6 @@
 
   <modules>
     <module>user-interface</module>
-    <module>api</module>
   </modules>
 
   <properties>

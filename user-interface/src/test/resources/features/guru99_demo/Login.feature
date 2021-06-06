@@ -8,7 +8,7 @@ Feature: Login feature
     And User clicks the login button
     Then User is redirected to "HomePage"
 
-#  Scenario: Login with invalid credentials
+#  Scenario: Login with invalid credential
 
 # Url = http://demo.guru99.com/V4/index.php
 # UserID = mngr329063
